@@ -1,11 +1,10 @@
-import { Award, Users, Clock, Wrench } from 'lucide-react';
+import { Award, Users, Wrench } from 'lucide-react';
 import './About.css';
 
 const About = () => {
   const stats = [
-    { icon: <Award size={32} />, value: '20+', label: 'Yıllık Tecrübe' },
-    { icon: <Users size={32} />, value: '5000+', label: 'Mutlu Müşteri' },
-    { icon: <Clock size={32} />, value: '24/7', label: 'Hizmet' },
+    { icon: <Award size={32} />, value: '60+', label: 'Yıllık Tecrübe' },
+    { icon: <Users size={32} />, value: '2500+', label: 'Mutlu Müşteri' },
     { icon: <Wrench size={32} />, value: '10000+', label: 'Tamamlanan İş' },
   ];
 
@@ -20,7 +19,7 @@ const About = () => {
             />
             <div className="about-image-overlay">
               <span className="experience-badge">
-                <strong>20</strong>
+                <strong>60+</strong>
                 <span>Yıllık Tecrübe</span>
               </span>
             </div>
@@ -28,30 +27,30 @@ const About = () => {
           
           <div className="about-text">
             <h2 className="section-title left-aligned">
-              Hakkımızda <span>Bilgi</span>
+              Servisimiz <span>Hakkında</span>
             </h2>
             
             <p className="about-description">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod 
-              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
-              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              1957'den bu yana Çanakkale Merkez'de mekanik servis alanında faaliyet gösteren firmamız, 
+              otomotiv sektöründeki tecrübesini günümüz teknolojileriyle birleştirerek hizmet vermektedir. 
+              Kurulduğumuz günden bu yana araç bakım ve onarım hizmetlerinde kalite, güven ve müşteri 
+              memnuniyetini ön planda tutmaktayız.
             </p>
             
             <p className="about-description">
-              Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore 
-              eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt 
-              in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis 
-              unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.
+              Gelişen otomotiv teknolojilerine uyum sağlayarak hizmet yelpazemizi sürekli genişletiyor, 
+              chiptuning hizmetini de bünyemize katarak müşterilerimize daha kapsamlı çözümler sunmaya 
+              devam ediyoruz.
             </p>
             
             <div className="about-features">
               <div className="feature">
                 <div className="feature-icon">
-                  <Wrench size={24} />
+                  <Users size={24} />
                 </div>
                 <div className="feature-text">
                   <h4>Uzman Kadro</h4>
-                  <p>Lorem ipsum dolor sit amet consectetur adipiscing elit.</p>
+                  <p>Alanında deneyimli ve eğitimli ekibimizle profesyonel hizmet sunuyoruz.</p>
                 </div>
               </div>
               
@@ -60,13 +59,13 @@ const About = () => {
                   <Award size={24} />
                 </div>
                 <div className="feature-text">
-                  <h4>Garantili İşçilik</h4>
-                  <p>Lorem ipsum dolor sit amet consectetur adipiscing elit.</p>
+                  <h4>Kaliteli İşçilik</h4>
+                  <p>Tüm işlemlerimizde yüksek kalite standartlarını esas alıyoruz.</p>
                 </div>
               </div>
             </div>
             
-            <a href="#iletisim" className="btn btn-primary">
+            <a href="#iletisim-telefon" className="btn btn-primary">
               Bize Ulaşın
             </a>
           </div>

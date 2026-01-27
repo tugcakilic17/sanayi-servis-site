@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Gauge, Zap, Cpu, Fuel } from 'lucide-react';
+import aracYazilimBg from '../assets/arac_yazilim.jpg';
 import './CarSoftware.css';
 
 const CarSoftware = () => {
@@ -130,8 +131,12 @@ const CarSoftware = () => {
   const tunedTorque = baseSpecs.torque + currentTuning.torqueIncrease;
 
   return (
-    <section id="yazilim" className="car-software">
-      <div className="software-bg-pattern"></div>
+    <section 
+      id="yazilim" 
+      className="car-software"
+      style={{ backgroundImage: `url(${aracYazilimBg})` }}
+    >
+      <div className="software-bg-overlay"></div>
       <div className="container">
         <h2 className="software-title">
           Tüm ayar dosyaları özelliklerimizi çevrimiçi olarak görüntüleyebilirsiniz.

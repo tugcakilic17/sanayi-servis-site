@@ -6,16 +6,16 @@
   --bg-secondary: #12121a;
   --bg-tertiary: #1a1a25;
   --bg-card: #15151f;
-  --accent-orange: #ff6b00;
-  --accent-orange-light: #ff8533;
-  --accent-orange-dark: #cc5500;
+  --accent-orange: #E31837;
+  --accent-orange-light: #F03A52;
+  --accent-orange-dark: #C41530;
   --accent-red: #dc2626;
   --text-primary: #ffffff;
   --text-secondary: #a0a0b0;
   --text-muted: #6b6b7b;
   --border-color: #2a2a3a;
   --success: #22c55e;
-  --gradient-orange: linear-gradient(135deg, #ff6b00 0%, #ff8533 100%);
+  --gradient-orange: linear-gradient(135deg, #E31837 0%, #F03A52 100%);
   
   /* Typography */
   font-family: 'Rajdhani', system-ui, sans-serif;
@@ -179,10 +179,10 @@ input, textarea, select {
 
 @keyframes glow {
   0%, 100% {
-    box-shadow: 0 0 20px rgba(255, 107, 0, 0.3);
+    box-shadow: 0 0 20px rgba(227, 24, 55, 0.3);
   }
   50% {
-    box-shadow: 0 0 40px rgba(255, 107, 0, 0.6);
+    box-shadow: 0 0 40px rgba(227, 24, 55, 0.6);
   }
 }
 

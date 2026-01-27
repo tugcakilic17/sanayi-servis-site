@@ -1,15 +1,64 @@
-import { useState } from 'react';
-import { MapPin, Phone, Clock, Mail, Send, CheckCircle } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+import { MapPin, Phone, Clock, Instagram, Send, CheckCircle } from 'lucide-react';
 import './Contact.css';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
-    email: '',
     message: ''
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [activeGlow, setActiveGlow] = useState(null);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const checkHash = () => {
+      const hash = window.location.hash;
+      
+      if (hash === '#iletisim-telefon' || hash === '#iletisim') {
+        setActiveGlow('phone');
+        // Scroll to contact section
+        if (sectionRef.current) {
+          const yOffset = -80; // Header offset
+          const y = sectionRef.current.getBoundingClientRect().top + window.pageYOffset + yOffset;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      } else if (hash === '#iletisim-harita') {
+        setActiveGlow('map');
+        // Scroll to contact section
+        if (sectionRef.current) {
+          const yOffset = -80;
+          const y = sectionRef.current.getBoundingClientRect().top + window.pageYOffset + yOffset;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      }
+    };
+
+    // Check on mount
+    checkHash();
+
+    // Listen for hash changes
+    window.addEventListener('hashchange', checkHash);
+    
+    // Also listen for clicks on links that might change the hash
+    const handleClick = (e) => {
+      const target = e.target.closest('a');
+      if (target) {
+        const href = target.getAttribute('href');
+        if (href === '#iletisim-telefon' || href === '#iletisim' || href === '#iletisim-harita') {
+          setTimeout(checkHash, 50);
+        }
+      }
+    };
+    
+    document.addEventListener('click', handleClick);
+    
+    return () => {
+      window.removeEventListener('hashchange', checkHash);
+      document.removeEventListener('click', handleClick);
+    };
+  }, []);
 
   const handleChange = (e) => {
     setFormData({
@@ -20,16 +69,15 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Simulate form submission
     setIsSubmitted(true);
     setTimeout(() => {
       setIsSubmitted(false);
-      setFormData({ name: '', phone: '', email: '', message: '' });
+      setFormData({ name: '', phone: '', message: '' });
     }, 3000);
   };
 
   return (
-    <section id="iletisim" className="contact section">
+    <section id="iletisim" className="contact section" ref={sectionRef}>
       <div className="container">
         <h2 className="section-title">
           Bize <span>Ulaşın</span>
@@ -46,31 +94,31 @@ const Contact = () => {
                 </div>
                 <div className="info-text">
                   <h4>Adres</h4>
-                  <p>Lorem İpsum Sanayi Sitesi<br />No: 123, Blok: A<br />Kadıköy / İstanbul</p>
+                  <p>Küçük Sanayi Sitesi<br />6. Sokak No: 13<br />17100 Çanakkale Merkez/Çanakkale</p>
                 </div>
               </div>
               
-              <div className="info-card">
+              <div className={`info-card phone-card ${activeGlow === 'phone' ? 'glow-active' : ''}`}>
                 <div className="info-icon">
                   <Phone size={24} />
                 </div>
                 <div className="info-text">
                   <h4>Telefon</h4>
                   <p>
-                    <a href="tel:+905551234567">+90 555 123 45 67</a>
+                    <a href="tel:+905336777060">+90 (533) 677 70 60</a>
                     <br />
-                    <a href="tel:+905559876543">+90 555 987 65 43</a>
+                    <a href="tel:+905373411700">+90 (537) 341 17 00</a>
                   </p>
                 </div>
               </div>
               
               <div className="info-card">
                 <div className="info-icon">
-                  <Mail size={24} />
+                  <Instagram size={24} />
                 </div>
                 <div className="info-text">
-                  <h4>E-posta</h4>
-                  <p><a href="mailto:info@autotech.com">info@autotech.com</a></p>
+                  <h4>Instagram</h4>
+                  <p><a href="https://instagram.com/starlarotoservis" target="_blank" rel="noopener noreferrer">@starlarotoservis</a></p>
                 </div>
               </div>
               
@@ -86,9 +134,9 @@ const Contact = () => {
             </div>
           </div>
           
-          <div className="contact-map">
+          <div className={`contact-map ${activeGlow === 'map' ? 'glow-active' : ''}`}>
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3011.6258908668147!2d29.02589731541671!3d40.98743697930268!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cab85d40d7ab5d%3A0x1a7b35cc33a8c6a!2sKad%C4%B1k%C3%B6y%2C%20Istanbul!5e0!3m2!1sen!2str!4v1650000000000!5m2!1sen!2str"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3044.5!2d26.4134!3d40.1553!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14b1a9c3c9c3c9c3%3A0x0!2sK%C3%BC%C3%A7%C3%BCk%20Sanayi%20Sitesi%2C%206.%20Sokak%20No%3A%2013%2C%2017100%20%C3%87anakkale!5e0!3m2!1str!2str!4v1706000000000!5m2!1str!2str"
               width="100%"
               height="100%"
               style={{ border: 0 }}
@@ -129,19 +177,6 @@ const Contact = () => {
                   value={formData.phone}
                   onChange={handleChange}
                   placeholder="+90 5XX XXX XX XX"
-                  required
-                />
-              </div>
-              
-              <div className="form-group">
-                <label htmlFor="email">E-posta</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  placeholder="ornek@email.com"
                   required
                 />
               </div>

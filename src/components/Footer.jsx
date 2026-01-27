@@ -1,4 +1,6 @@
-import { Phone, Mail, MapPin, Facebook, Instagram, Twitter, Youtube, ChevronUp } from 'lucide-react';
+import { Phone, MapPin, Instagram, ChevronUp } from 'lucide-react';
+import logoImg from '../assets/logo.jpg';
+import ecutunedImg from '../assets/ecutuned.png';
 import './Footer.css';
 
 const Footer = () => {
@@ -12,18 +14,18 @@ const Footer = () => {
         <div className="footer-content">
           <div className="footer-brand">
             <a href="#anasayfa" className="footer-logo">
-              <span className="logo-text">AUTO</span>
-              <span className="logo-accent">TECH</span>
+              <img src={logoImg} alt="Logo" className="footer-logo-img" />
+              <span className="footer-logo-divider">/</span>
+              <img src={ecutunedImg} alt="ECU Tuned" className="footer-logo-img ecutuned" />
             </a>
             <p className="footer-description">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-              Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              1957'den bu yana Çanakkale Merkez'de mekanik servis ve elektronik hizmetleri alanında 
+              faaliyet gösteren firmamız, tecrübesini günümüz teknolojileriyle birleştirerek hizmet vermektedir.
             </p>
             <div className="footer-social">
-              <a href="#" aria-label="Facebook"><Facebook size={20} /></a>
-              <a href="#" aria-label="Instagram"><Instagram size={20} /></a>
-              <a href="#" aria-label="Twitter"><Twitter size={20} /></a>
-              <a href="#" aria-label="Youtube"><Youtube size={20} /></a>
+              <a href="#iletisim-harita" aria-label="Konum"><MapPin size={20} /></a>
+              <a href="#iletisim-telefon" aria-label="Telefon"><Phone size={20} /></a>
+              <a href="https://instagram.com/starlarotoservis" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><Instagram size={20} /></a>
             </div>
           </div>
           
@@ -54,25 +56,25 @@ const Footer = () => {
             <h4>İletişim</h4>
             <div className="contact-item">
               <MapPin size={18} />
-              <span>Lorem İpsum Sanayi Sitesi No: 123, İstanbul</span>
+              <span>Küçük Sanayi Sitesi, 6. Sokak No: 13, Çanakkale</span>
             </div>
             <div className="contact-item">
               <Phone size={18} />
-              <span>+90 555 123 45 67</span>
+              <span>+90 (533) 677 70 60</span>
             </div>
             <div className="contact-item">
               <Phone size={18} />
-              <span>+90 555 987 65 43</span>
+              <span>+90 (537) 341 17 00</span>
             </div>
             <div className="contact-item">
-              <Mail size={18} />
-              <span>info@autotech.com</span>
+              <Instagram size={18} />
+              <span>@starlarotoservis</span>
             </div>
           </div>
         </div>
         
         <div className="footer-bottom">
-          <p>&copy; 2026 AutoTech. Tüm hakları saklıdır.</p>
+          <p>&copy; 2026 Starlar Oto Servis. Tüm hakları saklıdır.</p>
           <button className="scroll-top" onClick={scrollToTop} aria-label="Yukarı çık">
             <ChevronUp size={24} />
           </button>

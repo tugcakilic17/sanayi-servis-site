@@ -27,7 +27,7 @@
   background: var(--gradient-orange);
   padding: 25px 35px;
   border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(255, 107, 0, 0.4);
+  box-shadow: 0 10px 30px rgba(227, 24, 55, 0.5);
 }
 
 .experience-badge {
@@ -105,7 +105,7 @@
 /* Stats */
 .about-stats {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 30px;
 }
 
@@ -121,7 +121,7 @@
 .stat-card:hover {
   transform: translateY(-10px);
   border-color: var(--accent-orange);
-  box-shadow: 0 20px 40px rgba(255, 107, 0, 0.2);
+  box-shadow: 0 20px 40px rgba(227, 24, 55, 0.25);
 }
 
 .stat-icon {

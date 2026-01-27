@@ -15,20 +15,26 @@
 .footer-logo {
   display: flex;
   align-items: center;
-  font-family: 'Orbitron', sans-serif;
-  font-size: 1.8rem;
-  font-weight: 800;
+  gap: 10px;
   text-decoration: none;
   margin-bottom: 20px;
 }
 
-.footer-logo .logo-text {
-  color: var(--text-primary);
+.footer-logo-img {
+  height: 90px;
+  width: auto;
+  object-fit: contain;
 }
 
-.footer-logo .logo-accent {
-  color: var(--accent-orange);
-  margin-left: 2px;
+.footer-logo-img.ecutuned {
+  height: 120px;
+}
+
+.footer-logo-divider {
+  font-size: 2.2rem;
+  font-weight: 300;
+  color: var(--text-muted);
+  margin: 0 8px;
 }
 
 .footer-description {

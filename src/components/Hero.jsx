@@ -19,7 +19,7 @@ const Hero = () => {
     {
       image: 'https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=1920&q=80',
       title: 'Motor Bakım & Onarım',
-      subtitle: '20 yıllık tecrübe ile hizmetinizdeyiz'
+      subtitle: '1957\'den bugüne tecrübemizle hizmetinizdeyiz'
     },
     {
       image: 'https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=1920&q=80',
@@ -60,7 +60,7 @@ const Hero = () => {
             {slides[currentSlide].subtitle}
           </p>
           <div className="hero-buttons">
-            <a href="#iletisim" className="btn btn-primary">
+            <a href="#iletisim-telefon" className="btn btn-primary">
               Randevu Al
             </a>
             <a href="#hizmetler" className="btn btn-outline">
