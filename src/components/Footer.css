@@ -21,13 +21,13 @@
 }
 
 .footer-logo-img {
-  height: 90px;
+  height: 70px;
   width: auto;
   object-fit: contain;
 }
 
 .footer-logo-img.ecutuned {
-  height: 120px;
+  height: 50px;
 }
 
 .footer-logo-divider {

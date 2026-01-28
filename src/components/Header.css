@@ -73,13 +73,13 @@
 }
 
 .logo-img {
-  height: 110px;
+  height: 95px;
   width: auto;
   object-fit: contain;
 }
 
 .logo-img.ecutuned {
-  height: 150px;
+  height: 60px;
 }
 
 .logo-divider {

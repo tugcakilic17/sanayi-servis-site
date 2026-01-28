@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { ChevronDown } from 'lucide-react';
+import aracYazilim from '../assets/arac_yazilim.jpg';
 import './Hero.css';
 
 const Hero = () => {
@@ -22,7 +23,7 @@ const Hero = () => {
       subtitle: '1957\'den bugüne tecrübemizle hizmetinizdeyiz'
     },
     {
-      image: 'https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=1920&q=80',
+      image: aracYazilim,
       title: 'Performans Artışı',
       subtitle: 'Aracınızın potansiyelini ortaya çıkarın'
     }

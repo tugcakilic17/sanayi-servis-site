@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Gauge, Zap, Cpu, Fuel } from 'lucide-react';
-import aracYazilimBg from '../assets/arac_yazilim.jpg';
 import './CarSoftware.css';
 
 const CarSoftware = () => {
@@ -134,7 +133,6 @@ const CarSoftware = () => {
     <section 
       id="yazilim" 
       className="car-software"
-      style={{ backgroundImage: `url(${aracYazilimBg})` }}
     >
       <div className="software-bg-overlay"></div>
       <div className="container">

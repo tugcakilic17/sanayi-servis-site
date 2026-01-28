@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Menu, X, Phone, MapPin } from 'lucide-react';
-import logoImg from '../assets/logo.jpg';
+import { Link } from 'react-router-dom';
+import logoImg from '../assets/logo.png';
 import ecutunedImg from '../assets/ecutuned.png';
 import './Header.css';
 
@@ -29,12 +30,12 @@ const Header = () => {
   }, [isMenuOpen]);
 
   const navLinks = [
-    { href: '#anasayfa', label: 'Anasayfa' },
-    { href: '#yazilim', label: 'Araç Yazılım' },
-    { href: '#hakkimizda', label: 'Hakkımızda' },
-    { href: '#hizmetler', label: 'Hizmetler' },
-    { href: '#yorumlar', label: 'Yorumlar' },
-    { href: '#iletisim', label: 'İletişim' },
+    { to: '/#anasayfa', label: 'Anasayfa' },
+    { to: '/#yazilim', label: 'Araç Yazılım' },
+    { to: '/#hakkimizda', label: 'Hakkımızda' },
+    { to: '/hizmetler/motor-genel-onarim', label: 'Hizmetler' },
+    { to: '/#yorumlar', label: 'Yorumlar' },
+    { to: '/#iletisim', label: 'İletişim' },
   ];
 
   const Logo = () => (
@@ -68,9 +69,9 @@ const Header = () => {
       
       <nav className="navbar">
         <div className="container navbar-content">
-          <a href="#anasayfa" className="logo">
+          <Link to="/#anasayfa" className="logo">
             <Logo />
-          </a>
+          </Link>
           
           {/* Mobile Menu Overlay */}
           <div 
@@ -80,9 +81,9 @@ const Header = () => {
           
           <div className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>
             <div className="nav-menu-header">
-              <a href="#anasayfa" className="logo" onClick={() => setIsMenuOpen(false)}>
+              <Link to="/#anasayfa" className="logo" onClick={() => setIsMenuOpen(false)}>
                 <Logo />
-              </a>
+              </Link>
               <button 
                 className="menu-close"
                 onClick={() => setIsMenuOpen(false)}
@@ -94,13 +95,10 @@ const Header = () => {
             
             <ul className="nav-links">
               {navLinks.map((link) => (
-                <li key={link.href}>
-                  <a 
-                    href={link.href}
-                    onClick={() => setIsMenuOpen(false)}
-                  >
+                <li key={link.to}>
+                  <Link to={link.to} onClick={() => setIsMenuOpen(false)}>
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

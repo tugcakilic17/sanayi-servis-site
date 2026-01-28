@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { MapPin, Phone, Clock, Instagram, Send, CheckCircle } from 'lucide-react';
+import { MapPin, Phone, Clock, Instagram, Send, CheckCircle, Navigation, ExternalLink } from 'lucide-react';
 import './Contact.css';
 
 const Contact = () => {
@@ -134,17 +134,39 @@ const Contact = () => {
             </div>
           </div>
           
-          <div className={`contact-map ${activeGlow === 'map' ? 'glow-active' : ''}`}>
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3044.5!2d26.4134!3d40.1553!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14b1a9c3c9c3c9c3%3A0x0!2sK%C3%BC%C3%A7%C3%BCk%20Sanayi%20Sitesi%2C%206.%20Sokak%20No%3A%2013%2C%2017100%20%C3%87anakkale!5e0!3m2!1str!2str!4v1706000000000!5m2!1str!2str"
-              width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              allowFullScreen=""
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="Konum"
-            ></iframe>
+          <div className={`contact-map-wrapper ${activeGlow === 'map' ? 'glow-active' : ''}`}>
+            <div className="contact-map">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3049.843495033104!2d26.42412477522835!3d40.145769771484396!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14b1a9cc08787731%3A0x891f3706f3ebf51!2sStarlar%20Otomotiv%20Servis%2C%20Bak%C4%B1m%20Hizmetleri!5e0!3m2!1str!2str!4v1769554784545!5m2!1str!2str"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Konum"
+              ></iframe>
+            </div>
+            <div className="map-buttons">
+              <a 
+                href="https://www.google.com/maps/dir/?api=1&destination=Starlar+Otomotiv+Servis+Bakım+Hizmetleri+Çanakkale" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="map-btn directions-btn"
+              >
+                <Navigation size={18} />
+                <span>Yol Tarifi Al</span>
+              </a>
+              <a 
+                href="https://www.google.com/maps/place/Starlar+Otomotiv+Servis,+Bakım+Hizmetleri/@40.1457698,26.4241248,17z" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="map-btn open-btn"
+              >
+                <ExternalLink size={18} />
+                <span>Google Maps'te Aç</span>
+              </a>
+            </div>
           </div>
         </div>
         

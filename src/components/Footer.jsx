@@ -1,5 +1,6 @@
 import { Phone, MapPin, Instagram, ChevronUp } from 'lucide-react';
-import logoImg from '../assets/logo.jpg';
+import { Link } from 'react-router-dom';
+import logoImg from '../assets/logo.png';
 import ecutunedImg from '../assets/ecutuned.png';
 import './Footer.css';
 
@@ -13,18 +14,18 @@ const Footer = () => {
       <div className="container">
         <div className="footer-content">
           <div className="footer-brand">
-            <a href="#anasayfa" className="footer-logo">
+            <Link to="/#anasayfa" className="footer-logo">
               <img src={logoImg} alt="Logo" className="footer-logo-img" />
               <span className="footer-logo-divider">/</span>
               <img src={ecutunedImg} alt="ECU Tuned" className="footer-logo-img ecutuned" />
-            </a>
+            </Link>
             <p className="footer-description">
               1957'den bu yana Çanakkale Merkez'de mekanik servis ve elektronik hizmetleri alanında 
               faaliyet gösteren firmamız, tecrübesini günümüz teknolojileriyle birleştirerek hizmet vermektedir.
             </p>
             <div className="footer-social">
-              <a href="#iletisim-harita" aria-label="Konum"><MapPin size={20} /></a>
-              <a href="#iletisim-telefon" aria-label="Telefon"><Phone size={20} /></a>
+              <Link to="/#iletisim-harita" aria-label="Konum"><MapPin size={20} /></Link>
+              <Link to="/#iletisim-telefon" aria-label="Telefon"><Phone size={20} /></Link>
               <a href="https://instagram.com/starlarotoservis" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><Instagram size={20} /></a>
             </div>
           </div>
@@ -32,23 +33,23 @@ const Footer = () => {
           <div className="footer-links">
             <h4>Hızlı Linkler</h4>
             <ul>
-              <li><a href="#anasayfa">Anasayfa</a></li>
-              <li><a href="#yazilim">Araç Yazılım</a></li>
-              <li><a href="#hakkimizda">Hakkımızda</a></li>
-              <li><a href="#hizmetler">Hizmetler</a></li>
-              <li><a href="#yorumlar">Yorumlar</a></li>
-              <li><a href="#iletisim">İletişim</a></li>
+              <li><Link to="/#anasayfa">Anasayfa</Link></li>
+              <li><Link to="/#yazilim">Araç Yazılım</Link></li>
+              <li><Link to="/#hakkimizda">Hakkımızda</Link></li>
+              <li><Link to="/hizmetler/motor-genel-onarim">Hizmetler</Link></li>
+              <li><Link to="/#yorumlar">Yorumlar</Link></li>
+              <li><Link to="/#iletisim">İletişim</Link></li>
             </ul>
           </div>
           
           <div className="footer-services">
             <h4>Hizmetlerimiz</h4>
             <ul>
-              <li><a href="#hizmetler">Chip Tuning</a></li>
-              <li><a href="#hizmetler">Motor Bakım</a></li>
-              <li><a href="#hizmetler">ECU Yazılım</a></li>
-              <li><a href="#hizmetler">Performans Artışı</a></li>
-              <li><a href="#hizmetler">DPF/EGR Çözümleri</a></li>
+              <li><Link to="/hizmetler/chiptuning">Chiptuning</Link></li>
+              <li><Link to="/hizmetler/motor-genel-onarim">Motor & Genel Onarım</Link></li>
+              <li><Link to="/hizmetler/sanziman-yazilimi">Şanzıman Yazılımı</Link></li>
+              <li><Link to="/hizmetler/performans-artisi">Performans Artışı</Link></li>
+              <li><Link to="/hizmetler/egr-dpf-cozumleri">EGR / DPF Çözümleri</Link></li>
             </ul>
           </div>
           
