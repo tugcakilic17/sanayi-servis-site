@@ -34,7 +34,6 @@ const Footer = () => {
             <h4>Hızlı Linkler</h4>
             <ul>
               <li><Link to="/#anasayfa">Anasayfa</Link></li>
-              <li><Link to="/#yazilim">Araç Yazılım</Link></li>
               <li><Link to="/#hakkimizda">Hakkımızda</Link></li>
               <li><Link to="/hizmetler/motor-genel-onarim">Hizmetler</Link></li>
               <li><Link to="/#yorumlar">Yorumlar</Link></li>

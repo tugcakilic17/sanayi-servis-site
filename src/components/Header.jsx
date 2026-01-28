@@ -31,7 +31,6 @@ const Header = () => {
 
   const navLinks = [
     { to: '/#anasayfa', label: 'Anasayfa' },
-    { to: '/#yazilim', label: 'Araç Yazılım' },
     { to: '/#hakkimizda', label: 'Hakkımızda' },
     { to: '/hizmetler/motor-genel-onarim', label: 'Hizmetler' },
     { to: '/#yorumlar', label: 'Yorumlar' },
@@ -60,10 +59,10 @@ const Header = () => {
               <span>+90 (537) 341 17 00</span>
             </a>
           </div>
-          <div className="header-address">
+          <Link to="/#iletisim-harita" className="header-address" aria-label="Haritaya git">
             <MapPin size={14} />
             <span>Küçük Sanayi Sitesi, 6. Sokak No: 13, Çanakkale</span>
-          </div>
+          </Link>
         </div>
       </div>
       

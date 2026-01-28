@@ -110,14 +110,42 @@
   transform: translateY(-3px);
 }
 
-.hero-dots {
+.hero-nav {
   position: absolute;
   bottom: 100px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 15px;
+  align-items: center;
+  gap: 18px;
   z-index: 10;
+}
+
+.hero-dots {
+  display: flex;
+  gap: 15px;
+}
+
+.hero-arrow {
+  background: transparent;
+  border: 0;
+  color: var(--accent-orange);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.hero-arrow:hover {
+  transform: scale(1.15);
+  color: var(--accent-orange-light);
+}
+
+.hero-arrow:focus-visible {
+  outline: 2px solid rgba(227, 24, 55, 0.75);
+  outline-offset: 4px;
 }
 
 .hero-dot {
@@ -217,7 +245,7 @@
     justify-content: center;
   }
   
-  .hero-dots {
+  .hero-nav {
     bottom: 80px;
   }
 }

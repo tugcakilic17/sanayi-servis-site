@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react';
 import aracYazilim from '../assets/arac_yazilim.jpg';
 import './Hero.css';
 
@@ -40,6 +40,14 @@ const Hero = () => {
     setCurrentSlide(index);
   };
 
+  const goPrev = () => {
+    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+  };
+
+  const goNext = () => {
+    setCurrentSlide((prev) => (prev + 1) % slides.length);
+  };
+
   return (
     <section id="anasayfa" className="hero">
       {slides.map((slide, index) => (
@@ -71,20 +79,31 @@ const Hero = () => {
         </div>
       </div>
       
-      <div className="hero-dots">
-        {slides.map((_, index) => (
-          <button
-            key={index}
-            className={`hero-dot ${index === currentSlide ? 'active' : ''}`}
-            onClick={() => handleDotClick(index)}
-            aria-label={`Slide ${index + 1}`}
-          >
-            <span className="dot-inner"></span>
-          </button>
-        ))}
+      <div className="hero-nav">
+        <button type="button" className="hero-arrow" onClick={goPrev} aria-label="Önceki görsel">
+          <ChevronLeft size={36} strokeWidth={3} />
+        </button>
+
+        <div className="hero-dots" role="tablist" aria-label="Görsel seçici">
+          {slides.map((_, index) => (
+            <button
+              key={index}
+              className={`hero-dot ${index === currentSlide ? 'active' : ''}`}
+              onClick={() => handleDotClick(index)}
+              aria-label={`Slide ${index + 1}`}
+              aria-current={index === currentSlide ? 'true' : 'false'}
+            >
+              <span className="dot-inner"></span>
+            </button>
+          ))}
+        </div>
+
+        <button type="button" className="hero-arrow" onClick={goNext} aria-label="Sonraki görsel">
+          <ChevronRight size={36} strokeWidth={3} />
+        </button>
       </div>
       
-      <a href="#yazilim" className="hero-scroll">
+      <a href="#hakkimizda" className="hero-scroll">
         <ChevronDown size={32} />
       </a>
     </section>

@@ -1,14 +1,22 @@
 import { useState, useEffect, useRef } from 'react';
-import { MapPin, Phone, Clock, Instagram, Send, CheckCircle, Navigation, ExternalLink } from 'lucide-react';
+import { MapPin, Phone, Clock, Instagram, Send, Navigation, ExternalLink } from 'lucide-react';
 import './Contact.css';
 
 const Contact = () => {
+  const MAP_LAT_LNG = '40.1457698,26.4241248';
+  const mapsSearchUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(MAP_LAT_LNG)}`;
+  const mapsDirectionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(MAP_LAT_LNG)}`;
+
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
     message: ''
   });
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [errors, setErrors] = useState({
+    name: '',
+    phone: '',
+    message: '',
+  });
   const [activeGlow, setActiveGlow] = useState(null);
   const sectionRef = useRef(null);
 
@@ -45,8 +53,19 @@ const Contact = () => {
     const handleClick = (e) => {
       const target = e.target.closest('a');
       if (target) {
-        const href = target.getAttribute('href');
-        if (href === '#iletisim-telefon' || href === '#iletisim' || href === '#iletisim-harita') {
+        const href = target.getAttribute('href') || '';
+        const isContactHash =
+          href === '#iletisim-telefon' ||
+          href === '#iletisim' ||
+          href === '#iletisim-harita' ||
+          href.endsWith('/#iletisim-telefon') ||
+          href.endsWith('/#iletisim') ||
+          href.endsWith('/#iletisim-harita') ||
+          href.endsWith('#iletisim-telefon') ||
+          href.endsWith('#iletisim') ||
+          href.endsWith('#iletisim-harita');
+
+        if (isContactHash) {
           setTimeout(checkHash, 50);
         }
       }
@@ -61,19 +80,32 @@ const Contact = () => {
   }, []);
 
   const handleChange = (e) => {
+    const { name, value } = e.target;
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [name]: value
     });
+
+    if (errors[name]) {
+      setErrors((prev) => ({ ...prev, [name]: '' }));
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setIsSubmitted(true);
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({ name: '', phone: '', message: '' });
-    }, 3000);
+
+    const nextErrors = {
+      name: formData.name.trim() ? '' : 'Ad Soyad zorunludur.',
+      phone: formData.phone.trim() ? '' : 'Telefon zorunludur.',
+      message: formData.message.trim() ? '' : 'Mesaj zorunludur.',
+    };
+
+    setErrors(nextErrors);
+    const hasError = Object.values(nextErrors).some(Boolean);
+    if (hasError) return;
+
+    // Form geçerliyse Formspree'ye gönder
+    e.currentTarget.submit();
   };
 
   return (
@@ -88,15 +120,25 @@ const Contact = () => {
             <h3 className="contact-subtitle">İletişim Bilgileri</h3>
             
             <div className="info-cards">
-              <div className="info-card">
+              <a
+                className="info-card address-card"
+                href={mapsSearchUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Adresi Google Maps'te aç"
+              >
                 <div className="info-icon">
                   <MapPin size={24} />
                 </div>
                 <div className="info-text">
                   <h4>Adres</h4>
                   <p>Küçük Sanayi Sitesi<br />6. Sokak No: 13<br />17100 Çanakkale Merkez/Çanakkale</p>
+                  <span className="address-open">
+                    <ExternalLink size={14} />
+                    <span>Google Maps’te Aç</span>
+                  </span>
                 </div>
-              </div>
+              </a>
               
               <div className={`info-card phone-card ${activeGlow === 'phone' ? 'glow-active' : ''}`}>
                 <div className="info-icon">
@@ -149,7 +191,7 @@ const Contact = () => {
             </div>
             <div className="map-buttons">
               <a 
-                href="https://www.google.com/maps/dir/?api=1&destination=Starlar+Otomotiv+Servis+Bakım+Hizmetleri+Çanakkale" 
+                href={mapsDirectionsUrl}
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="map-btn directions-btn"
@@ -158,7 +200,7 @@ const Contact = () => {
                 <span>Yol Tarifi Al</span>
               </a>
               <a 
-                href="https://www.google.com/maps/place/Starlar+Otomotiv+Servis,+Bakım+Hizmetleri/@40.1457698,26.4241248,17z" 
+                href={mapsSearchUrl}
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="map-btn open-btn"
@@ -176,10 +218,16 @@ const Contact = () => {
             <p>Sizden duymak isteriz. Bize mesaj gönderin.</p>
           </div>
           
-          <form className="feedback-form" onSubmit={handleSubmit}>
+          <form
+            className="feedback-form"
+            action="https://formspree.io/f/mdazooed"
+            method="POST"
+            noValidate
+            onSubmit={handleSubmit}
+          >
             <div className="form-row">
               <div className="form-group">
-                <label htmlFor="name">Ad Soyad <span className="optional">(İsteğe bağlı)</span></label>
+                <label htmlFor="name">Ad Soyad</label>
                 <input
                   type="text"
                   id="name"
@@ -187,7 +235,11 @@ const Contact = () => {
                   value={formData.name}
                   onChange={handleChange}
                   placeholder="Adınız Soyadınız"
+                  required
+                  aria-invalid={Boolean(errors.name)}
+                  className={errors.name ? 'input-error' : undefined}
                 />
+                {errors.name && <small className="field-error">{errors.name}</small>}
               </div>
               
               <div className="form-group">
@@ -200,7 +252,10 @@ const Contact = () => {
                   onChange={handleChange}
                   placeholder="+90 5XX XXX XX XX"
                   required
+                  aria-invalid={Boolean(errors.phone)}
+                  className={errors.phone ? 'input-error' : undefined}
                 />
+                {errors.phone && <small className="field-error">{errors.phone}</small>}
               </div>
             </div>
             
@@ -214,25 +269,18 @@ const Contact = () => {
                 placeholder="Mesajınızı buraya yazın..."
                 rows="5"
                 required
+                aria-invalid={Boolean(errors.message)}
+                className={errors.message ? 'input-error' : undefined}
               ></textarea>
+              {errors.message && <small className="field-error">{errors.message}</small>}
             </div>
             
             <button 
               type="submit" 
-              className={`submit-btn ${isSubmitted ? 'submitted' : ''}`}
-              disabled={isSubmitted}
+              className="submit-btn"
             >
-              {isSubmitted ? (
-                <>
-                  <CheckCircle size={20} />
-                  <span>Gönderildi!</span>
-                </>
-              ) : (
-                <>
-                  <Send size={20} />
-                  <span>Gönder</span>
-                </>
-              )}
+              <Send size={20} />
+              <span>Gönder</span>
             </button>
           </form>
         </div>

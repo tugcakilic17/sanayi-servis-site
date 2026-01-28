@@ -38,9 +38,14 @@
   gap: 6px;
   color: var(--text-secondary);
   transition: color 0.3s ease;
+  text-decoration: none;
 }
 
 .header-contact a:hover {
+  color: var(--accent-orange);
+}
+
+.header-address:hover {
   color: var(--accent-orange);
 }
 
@@ -220,15 +225,19 @@
   }
   
   .nav-menu-header .logo-img {
-    height: 70px;
+    height: 45px;
   }
   
   .nav-menu-header .logo-img.ecutuned {
-    height: 90px;
+    height: 32px;
   }
   
   .nav-menu-header .logo-divider {
-    font-size: 2rem;
+    font-size: 1.4rem;
+  }
+  
+  .nav-menu-header .logo-images {
+    gap: 6px;
   }
   
   .menu-close {
@@ -293,10 +302,19 @@
   }
   
   .navbar-content > .logo .logo-img {
-    height: 80px;
+    height: 50px;
   }
   
   .navbar-content > .logo .logo-img.ecutuned {
-    height: 100px;
+    height: 35px;
+  }
+  
+  .navbar-content > .logo .logo-divider {
+    font-size: 1.5rem;
+    margin: 0 4px;
+  }
+  
+  .navbar-content > .logo .logo-images {
+    gap: 6px;
   }
 }

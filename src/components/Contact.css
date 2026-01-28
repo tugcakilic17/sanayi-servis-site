@@ -32,6 +32,11 @@
   transition: all 0.3s ease;
 }
 
+.info-card.address-card {
+  text-decoration: none;
+  color: inherit;
+}
+
 .info-card:hover {
   border-color: var(--accent-orange);
   transform: translateX(10px);
@@ -102,16 +107,26 @@
   border-radius: 12px;
   overflow: hidden;
   min-height: 520px;
-  border: 1px solid var(--border-color);
+  border: 2px solid var(--border-color);
 }
 
 .contact-map iframe {
-  filter: grayscale(100%) invert(92%) contrast(90%);
+  filter: grayscale(35%) saturate(0.9) contrast(1.05);
   transition: filter 0.3s ease;
 }
 
 .contact-map:hover iframe {
-  filter: grayscale(50%) invert(92%) contrast(90%);
+  filter: grayscale(0%) saturate(1) contrast(1.05);
+}
+
+.address-open {
+  margin-top: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--accent-orange);
 }
 
 .map-buttons {
@@ -216,6 +231,17 @@
   color: var(--text-primary);
   font-size: 1rem;
   transition: all 0.3s ease;
+}
+
+.form-group .input-error {
+  border-color: rgba(239, 68, 68, 0.9);
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
+}
+
+.field-error {
+  color: rgba(239, 68, 68, 0.95);
+  font-size: 0.85rem;
+  font-weight: 600;
 }
 
 .form-group input:focus,
