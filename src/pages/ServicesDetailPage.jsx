@@ -1,5 +1,6 @@
-import { useEffect, useMemo, useRef } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { NavLink, useNavigate, useParams } from 'react-router-dom';
+import { ChevronDown } from 'lucide-react';
 
 import { allServices, elektronikServices, mekanikServices } from '../data/servicesData';
 import './ServicesDetailPage.css';
@@ -7,7 +8,8 @@ import './ServicesDetailPage.css';
 export default function ServicesDetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const contentRef = useRef(null);
+  const [mekanikOpen, setMekanikOpen] = useState(true);
+  const [elektronikOpen, setElektronikOpen] = useState(true);
 
   useEffect(() => {
     if (!id) {
@@ -34,19 +36,16 @@ export default function ServicesDetailPage() {
     }
   }, [id, navigate]);
 
-  // Mobilde hizmet değiştiğinde içerik kısmına scroll
+  // Sayfa açıldığında veya hizmet değiştiğinde sayfanın üstüne yumuşak scroll
   useEffect(() => {
-    const isMobile = window.innerWidth <= 1024;
-    if (isMobile && contentRef.current) {
-      const headerOffset = 100;
-      const elementPosition = contentRef.current.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-      
+    const timer = setTimeout(() => {
       window.scrollTo({
-        top: offsetPosition,
+        top: 0,
         behavior: 'smooth'
       });
-    }
+    }, 50);
+    
+    return () => clearTimeout(timer);
   }, [id]);
 
   const selected = useMemo(() => {
@@ -62,8 +61,15 @@ export default function ServicesDetailPage() {
         <aside className="services-detail-sidebar">
           <div className="services-detail-sidebar-inner">
             <div className="services-detail-group">
-              <div className="services-detail-group-title">Mekanik Hizmetlerimiz</div>
-              <div className="services-detail-list">
+              <button 
+                className={`services-detail-group-title ${mekanikOpen ? 'open' : ''}`}
+                onClick={() => setMekanikOpen(!mekanikOpen)}
+                aria-expanded={mekanikOpen}
+              >
+                <span>Mekanik Hizmetlerimiz</span>
+                <ChevronDown className="services-detail-chevron" size={20} strokeWidth={2.5} />
+              </button>
+              <div className={`services-detail-list ${mekanikOpen ? 'open' : ''}`}>
                 {mekanikServices.map((s) => (
                   <NavLink
                     key={s.id}
@@ -79,8 +85,15 @@ export default function ServicesDetailPage() {
             </div>
 
             <div className="services-detail-group">
-              <div className="services-detail-group-title">Elektronik & Yazılım Hizmetlerimiz</div>
-              <div className="services-detail-list">
+              <button 
+                className={`services-detail-group-title ${elektronikOpen ? 'open' : ''}`}
+                onClick={() => setElektronikOpen(!elektronikOpen)}
+                aria-expanded={elektronikOpen}
+              >
+                <span>Elektronik & Yazılım Hizmetlerimiz</span>
+                <ChevronDown className="services-detail-chevron" size={20} strokeWidth={2.5} />
+              </button>
+              <div className={`services-detail-list ${elektronikOpen ? 'open' : ''}`}>
                 {elektronikServices.map((s) => (
                   <NavLink
                     key={s.id}
@@ -97,7 +110,7 @@ export default function ServicesDetailPage() {
           </div>
         </aside>
 
-        <article className="services-detail-content" ref={contentRef}>
+        <article className="services-detail-content">
           <header className="services-detail-hero">
             <div className="services-detail-hero-bg">
               <img src={selected.image} alt={selected.title} />

@@ -18,6 +18,7 @@ const Contact = () => {
     message: '',
   });
   const [activeGlow, setActiveGlow] = useState(null);
+  const [hoursExpanded, setHoursExpanded] = useState(false);
   const sectionRef = useRef(null);
 
   useEffect(() => {
@@ -154,23 +155,60 @@ const Contact = () => {
                 </div>
               </div>
               
-              <div className="info-card">
+              <a 
+                className="info-card instagram-card"
+                href="https://instagram.com/starlarotoservis" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                aria-label="Instagram'da aç"
+              >
                 <div className="info-icon">
                   <Instagram size={24} />
                 </div>
                 <div className="info-text">
                   <h4>Instagram</h4>
-                  <p><a href="https://instagram.com/starlarotoservis" target="_blank" rel="noopener noreferrer">@starlarotoservis</a></p>
+                  <p>@starlarotoservis</p>
                 </div>
-              </div>
+              </a>
               
-              <div className="info-card">
+              <div 
+                className={`info-card hours-card ${hoursExpanded ? 'expanded' : ''}`}
+                onClick={() => setHoursExpanded(!hoursExpanded)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    setHoursExpanded(!hoursExpanded);
+                  }
+                }}
+              >
                 <div className="info-icon">
                   <Clock size={24} />
                 </div>
                 <div className="info-text">
                   <h4>Çalışma Saatleri</h4>
-                  <p>Pazartesi - Cumartesi<br />08:00 - 19:00</p>
+                  {!hoursExpanded ? (
+                    <p>Pazartesi - Cumartesi<br />08:30 - 19:00 <span className="hours-hint">(detay için tıklayınız)</span></p>
+                  ) : (
+                    <div className="hours-detail">
+                      <div className="hours-row">
+                        <span className="hours-day">Pazartesi - Cuma</span>
+                        <span className="hours-time">08:30 - 19:00</span>
+                      </div>
+                      <div className="hours-row">
+                        <span className="hours-day">Cumartesi</span>
+                        <span className="hours-time">08:30 - 18:00</span>
+                      </div>
+                      <div className="hours-row closed">
+                        <span className="hours-day">Pazar</span>
+                        <span className="hours-time-wrapper">
+                          <span className="hours-time">Kapalı</span>
+                          <span className="hours-note">İstisnai durumlar için iletişime geçiniz.</span>
+                        </span>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

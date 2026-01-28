@@ -1,13 +1,13 @@
 .services-detail-page {
   background: var(--bg-primary);
-  padding: 170px 0 80px; /* fixed header offset */
-  min-height: 100vh;
+  padding: 170px 0 40px; /* fixed header offset */
 }
 
 .services-detail-layout {
   display: grid;
   grid-template-columns: 280px 1fr;
   gap: 28px;
+  align-items: start;
 }
 
 .services-detail-sidebar {
@@ -24,25 +24,59 @@
 
 .services-detail-group {
   background: rgba(15, 15, 20, 0.55);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(227, 24, 55, 0.45);
   border-radius: 14px;
   padding: 14px;
   backdrop-filter: blur(8px);
 }
 
 .services-detail-group-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
   font-size: 0.9rem;
   color: var(--text-secondary);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
-  margin-bottom: 10px;
+  margin-bottom: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  text-align: left;
+  transition: color 0.2s ease;
+}
+
+.services-detail-group-title:hover {
+  color: var(--accent-orange);
+}
+
+.services-detail-chevron {
+  color: var(--accent-orange);
+  transition: transform 0.3s ease;
+}
+
+.services-detail-group-title.open .services-detail-chevron {
+  transform: rotate(180deg);
 }
 
 .services-detail-list {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.35s ease, opacity 0.25s ease, margin-top 0.35s ease;
+  margin-top: 0;
+}
+
+.services-detail-list.open {
+  max-height: 1000px;
+  opacity: 1;
+  margin-top: 10px;
 }
 
 .services-detail-item {
@@ -50,7 +84,7 @@
   padding: 14px 14px;
   border-radius: 10px;
   background: rgba(20, 20, 26, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(227, 24, 55, 0.35);
   color: var(--text-primary);
   font-weight: 700;
   font-size: 0.95rem;
@@ -75,7 +109,7 @@
 .services-detail-hero {
   border-radius: 16px;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(227, 24, 55, 0.5);
   background: rgba(10, 10, 15, 0.6);
   position: relative;
   min-height: 260px;
@@ -139,7 +173,7 @@
 .services-detail-body {
   margin-top: 18px;
   background: rgba(15, 15, 20, 0.55);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(227, 24, 55, 0.45);
   border-radius: 16px;
   padding: 26px 26px 24px;
   backdrop-filter: blur(8px);

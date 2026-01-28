@@ -32,14 +32,80 @@
   transition: all 0.3s ease;
 }
 
-.info-card.address-card {
+.info-card.address-card,
+.info-card.instagram-card {
   text-decoration: none;
   color: inherit;
+  cursor: pointer;
+}
+
+.info-card.hours-card {
+  cursor: pointer;
 }
 
 .info-card:hover {
   border-color: var(--accent-orange);
   transform: translateX(10px);
+}
+
+/* Hours Detail */
+.hours-hint {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--accent-orange);
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+.hours-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 5px;
+}
+
+.hours-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  gap: 30px;
+}
+
+.hours-row:last-child {
+  border-bottom: none;
+}
+
+.hours-day {
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.hours-time-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+}
+
+.hours-time {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.hours-note {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  opacity: 0.8;
+  margin-top: 2px;
+}
+
+.hours-row.closed .hours-time {
+  color: var(--accent-orange);
+  font-weight: 600;
 }
 
 /* Glow Animation - Only when active */
