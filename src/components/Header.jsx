@@ -3,11 +3,21 @@ import { Menu, X, Phone, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import logoImg from '../assets/logo.png';
 import ecutunedImg from '../assets/ecutuned.png';
+import { useLanguage } from '../context/LanguageContext';
 import './Header.css';
+
+const LogoImages = () => (
+  <div className="logo-images">
+    <img src={logoImg} alt="Logo" className="logo-img" />
+    <span className="logo-divider">/</span>
+    <img src={ecutunedImg} alt="ECU Tuned" className="logo-img ecutuned" />
+  </div>
+);
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const { selectedLanguage, changeLanguage, languages } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,14 +47,6 @@ const Header = () => {
     { to: '/#iletisim', label: 'İletişim' },
   ];
 
-  const Logo = () => (
-    <div className="logo-images">
-      <img src={logoImg} alt="Logo" className="logo-img" />
-      <span className="logo-divider">/</span>
-      <img src={ecutunedImg} alt="ECU Tuned" className="logo-img ecutuned" />
-    </div>
-  );
-
   return (
     <header className={`header ${isScrolled ? 'scrolled' : ''}`}>
       <div className="header-top">
@@ -69,7 +71,7 @@ const Header = () => {
       <nav className="navbar">
         <div className="container navbar-content">
           <Link to="/#anasayfa" className="logo">
-            <Logo />
+            <LogoImages />
           </Link>
           
           {/* Mobile Menu Overlay */}
@@ -81,7 +83,7 @@ const Header = () => {
           <div className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>
             <div className="nav-menu-header">
               <Link to="/#anasayfa" className="logo" onClick={() => setIsMenuOpen(false)}>
-                <Logo />
+                <LogoImages />
               </Link>
               <button 
                 className="menu-close"
@@ -101,6 +103,25 @@ const Header = () => {
                 </li>
               ))}
             </ul>
+
+            <div className="nav-language notranslate">
+              <label htmlFor="language-select" className="language-label">
+                Language
+              </label>
+              <select
+                id="language-select"
+                className="language-select notranslate"
+                value={selectedLanguage}
+                onChange={(event) => changeLanguage(event.target.value)}
+                aria-label="Site language"
+              >
+                {languages.map((language) => (
+                  <option key={language.code} value={language.code} className="notranslate">
+                    {language.label}
+                  </option>
+                ))}
+              </select>
+            </div>
             
             <div className="nav-menu-footer">
               <a href="tel:+905336777060" className="menu-phone">

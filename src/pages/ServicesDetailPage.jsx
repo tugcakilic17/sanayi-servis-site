@@ -54,6 +54,12 @@ export default function ServicesDetailPage() {
   }, [id]);
 
   const SelectedIcon = selected.Icon;
+  const handleServiceSelect = () => {
+    if (window.innerWidth <= 1024) {
+      setMekanikOpen(false);
+      setElektronikOpen(false);
+    }
+  };
 
   return (
     <section className="services-detail-page">
@@ -74,6 +80,7 @@ export default function ServicesDetailPage() {
                   <NavLink
                     key={s.id}
                     to={`/hizmetler/${s.id}`}
+                    onClick={handleServiceSelect}
                     className={({ isActive }) =>
                       `services-detail-item ${isActive ? 'active' : ''}`
                     }
@@ -98,6 +105,7 @@ export default function ServicesDetailPage() {
                   <NavLink
                     key={s.id}
                     to={`/hizmetler/${s.id}`}
+                    onClick={handleServiceSelect}
                     className={({ isActive }) =>
                       `services-detail-item ${isActive ? 'active' : ''}`
                     }
