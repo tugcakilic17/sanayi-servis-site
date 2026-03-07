@@ -8,8 +8,9 @@ const Services = () => {
   const navigate = useNavigate();
   const mechanicalGridId = useId();
   const electronicGridId = useId();
-  const [isMechanicalCollapsed, setIsMechanicalCollapsed] = useState(false);
-  const [isElectronicCollapsed, setIsElectronicCollapsed] = useState(false);
+  const isMobileViewport = () => typeof window !== 'undefined' && window.matchMedia('(max-width: 768px)').matches;
+  const [isMechanicalCollapsed, setIsMechanicalCollapsed] = useState(isMobileViewport);
+  const [isElectronicCollapsed, setIsElectronicCollapsed] = useState(isMobileViewport);
 
   const ServiceCard = ({ service, index }) => (
     <div 
